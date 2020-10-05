@@ -3,6 +3,7 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include<assert.h>
 
 #define N dir[0]
@@ -20,5 +21,6 @@ typedef struct node{
 node_t * read_map(const char *f_name, int **history);
 void search(node_t *node_arr, int node_id, int **history) ;
 void print_history(int *history);
+int count_lines(FILE *fp) ;
 
 #endif

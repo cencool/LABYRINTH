@@ -1,15 +1,28 @@
 #include "labyrint.h"
 
+int count_lines(FILE *fp) {
+    int ch, line_count = 1;
+    while ( (ch=fgetc(fp)) != EOF) {
+        if ( ch == '\n') {
+        line_count++;
+        }
+    }
+    rewind(fp);
+    return line_count;
+}
+
 node_t * read_map(const char *f_name, int **history) {
     FILE *fp = fopen(f_name, "r");
     if (fp == NULL) {
         fprintf(stderr,"fopen ERROR\n");
         exit(1);
     }
-    int node_cnt;
+    int node_cnt = count_lines(fp);
+    /*
     fscanf(fp,"%d",&node_cnt);
+    */
     printf("Node cnt:%d\n",node_cnt);
-    if ( (*history = malloc(sizeof(int)*(node_cnt+1))) == NULL) {
+    if ( (*history = malloc((sizeof(int)*(2*node_cnt))+2)) == NULL) {
         fprintf(stderr,"Malloc for history failed\n");
         exit(1);
     }
@@ -107,7 +120,7 @@ node_t * read_map(const char *f_name, int **history) {
             exit(1);
         }
     }
-
+    printf("Read map data:\n");
     for (int i = 0; i < node_cnt; i++) {
         printf("%2d, %2d, %2d, %2d, %2d, %2d\n", 
         node_arr[i].id, node_arr[i].type, node_arr[i].N, node_arr[i].E, node_arr[i].S, node_arr[i].W);

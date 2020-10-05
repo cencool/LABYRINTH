@@ -7,7 +7,7 @@ void search(node_t *node_arr,int id,int **history) {
        return;
    }
    else if (node_arr[id].visited == 1) {
-       printf("Node %d already visited\n", id);
+       //printf("Node %d already visited\n", id);
        return;
    }
    else {
@@ -15,7 +15,7 @@ void search(node_t *node_arr,int id,int **history) {
        int j=0;
        for (int i = 0; i < 4; i++) {
            if (node_arr[id].dir[i] != -1) {
-               while( *(*history+j) != -1){
+               while( *(*history+j) != -1){ // to find end of history
                    j++;
                }
                *(*history+j) = id; // add move to history

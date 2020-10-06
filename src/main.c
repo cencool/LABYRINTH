@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
         }
     }
     node_arr = read_map(f_name,&history);
-    search(node_arr, 0, &history);
+    search(node_arr, 0, 0,&history);
     
     return 0;
 }
